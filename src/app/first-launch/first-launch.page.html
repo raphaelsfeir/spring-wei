@@ -1,0 +1,33 @@
+<ion-content>
+  <ion-slides #slides [options]="slideOpts" pager>
+    <ion-slide class="step-one">
+      <h1>Salut !</h1>
+      <p>Bienvenue dans l'application SpringWei !</p>
+      <ion-button (click)="next()">Faire un tour</ion-button>
+      <small class="text-muted"><a (click)="ignore()">Ignorer la présentation</a></small>
+    </ion-slide>
+
+    <ion-slide class="step-two">
+      <img src="assets/img/firstLaunch/presentation.png" class="mobile">
+    </ion-slide>
+
+    <ion-slide class="step-three">
+      <img src="assets/img/firstLaunch/bungalow.png" class="mobile">
+    </ion-slide>
+
+    <ion-slide class="step-four">
+      <img src="assets/img/firstLaunch/infos.png" class="mobile">
+    </ion-slide>
+
+    <ion-slide class="step-bungalow" *ngIf="this.user.bungalow == '0'">
+      <p>Il semblerait que tu n'aies pas rejoint de bungalow, connecte-toi vite sur le tableau de bord !</p>
+      <ion-button (click)="_sys.goTo(_sys.DASHBOARD_LINK)">Rejoindre un bungalow</ion-button>
+    </ion-slide>
+
+    <ion-slide class="step-five">
+      <img src="assets/img/logo_lin.png" style="width: 70%">
+      <p>Tu peux maintenant profiter pleinement de l'application !</p>
+      <ion-button (click)="continue()">Continuer vers l'appli</ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

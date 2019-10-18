@@ -1,0 +1,128 @@
+// App Styles
+// ----------------------------------------------------------------------------
+// Put style rules here that you want to apply to the entire application. These 
+// styles are for the entire app and not just one component. Additionally, this 
+// file can hold Sass mixins, functions, and placeholder classes to be imported 
+// and used throughout the application.
+
+/** FONTS **/
+ion-label{
+  font-family: Poppins-Light, sans-serif !important;
+}
+ion-card-title {
+  font-family: Poppins-SemiBold, sans-serif;
+}
+ion-input, p {
+  font-family: Poppins-Regular, sans-serif;
+}
+ion-card-content {
+  font-family: Poppins-Light, sans-serif;
+}
+
+
+
+ion-menu-toggle ion-item{
+  padding: 20px;
+}
+ion-menu-toggle ion-item ion-label{
+  text-align: center;
+}
+.input-wrapper.sc-ion-item-md{
+  overflow: visible !important;
+}
+.bde {
+  display: block !important;
+  background: #3a3c39;
+  color: #ccc;
+}
+/*** iOS ***/
+.item-detail-icon.sc-ion-item-ios {
+  display: none !important;
+}
+ion-img.logo_lin {
+  height: 56px !important;
+}
+ion-img.logo_lin.ios {
+  height: 40px !important;
+}
+ion-card-title.ios {
+  font-size: 20px !important;
+  font-weight: 100 !important;
+}
+ion-card-subtitle.ios {
+  font-weight: 400 !important;
+  margin-top: 10px !important;
+}
+.card-content-ios {
+  padding-top: 10px !important;
+}
+ion-title.ios .toolbar-title {
+  font-weight: 400 !important;
+}
+ion-item.ios {
+  width: 100% !important;
+}
+.sc-ion-toolbar-ios-h {
+  --background: none !important;
+}
+/********** LOADING ****************/
+.spin-wrapper{
+  position: relative;
+  width: 100%;
+  margin-top: 150px;
+
+  .spinner{
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    border: 3px solid transparent;
+    border-top-color: #e0562c;
+    top: -30px;
+    left: 50%;
+    margin: -30px;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+
+    &:before, &:after{
+      content:'';
+      position: absolute;
+      border: 3px solid transparent;
+      border-radius: 50%;
+    }
+
+    &:before{
+      border-top-color: #f22e2e;
+      top: -12px;
+      left: -12px;
+      right: -12px;
+      bottom: -12px;
+      animation: spin 2s linear infinite;
+    }
+
+    &:after{
+      border-top-color: #333333;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      animation: spin 3s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message{
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background: #b2273c;
+  color: #fff;
+}

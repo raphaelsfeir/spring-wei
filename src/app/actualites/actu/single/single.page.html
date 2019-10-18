@@ -1,0 +1,12 @@
+<app-header-back [BackUrl]="'/actualites'" [titre]="actu?.titre"></app-header-back>
+
+<ion-img [src]="actu?.img" style="width: 100%; max-height: 300px"></ion-img>
+<ion-content padding>
+  <div *ngIf="loading">
+    <div class="spin-wrapper">
+      <div class="spinner"></div>
+    </div>
+  </div>
+  <span class="subtitle">Publié le {{actu?.date.seconds * 1000 | date: 'EEEE dd MMMM - H'}}h{{actu?.date.seconds * 1000 | date: 'mm'}}</span>
+  <p>{{actu?.content}}</p>
+</ion-content>

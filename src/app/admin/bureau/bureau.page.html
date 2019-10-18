@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Paramètres</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <section>
+        <h3>Gérer les accès</h3>
+        <div *ngIf="loading">
+            <div class="spin-wrapper">
+                <div class="spinner"></div>
+            </div>
+        </div>
+        <ion-list *ngIf="!loading">
+            <ion-item>
+                <ion-label>Carte</ion-label>
+                <ion-toggle [ngModel]="mapAccess" (click)="change('mapAccess', !mapAccess)" mode="ios"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Actualités</ion-label>
+                <ion-toggle [ngModel]="actuAccess" (click)="change('actuAccess', !actuAccess)" mode="ios"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Activités</ion-label>
+                <ion-toggle [ngModel]="activiteAccess" (click)="change('activiteAccess', !activiteAccess)" mode="ios"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Défis</ion-label>
+                <ion-toggle [ngModel]="challengeAccess" (click)="change('challengeAccess', !challengeAccess)" mode="ios"></ion-toggle>
+            </ion-item>
+        </ion-list>
+    </section>
+
+</ion-content>

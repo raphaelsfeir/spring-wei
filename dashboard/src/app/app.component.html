@@ -1,0 +1,45 @@
+<div id="main">
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light bg-light" *ngIf="nav.visible">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/update-account">Mon compte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/update-bungalow">Mon bungalow</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/help">Aide</a>
+          </li>
+        </ul>
+        <ul class="navbar my-2">
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()" routerLink="">Se déconnecter</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <router-outlet></router-outlet>
+
+  <footer>
+    <mat-card>
+      <mat-card-content>
+        <ul class="nav-footer">
+          <li><a [href]="_sys.DASHBOARD_LINK">Tableau de bord</a></li>
+          <li><a routerLink="/help">Aide</a></li>
+          <li><a routerLink="/policy">Confidentialité</a></li>
+          <li><a href="https://campus.insa-cvl.fr">Site Campus</a></li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </footer>
+</div>

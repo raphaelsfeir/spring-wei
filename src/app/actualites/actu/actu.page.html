@@ -1,0 +1,74 @@
+<app-header-menu></app-header-menu>
+
+<ion-content>
+  <ion-button (click)="_sys.goTo(_sys.WEI_LINK + '/breviaire.pdf')" expand="full">
+    <ion-icon name="musical-notes" slot="start"></ion-icon>
+    Le bréviaire
+  </ion-button>
+  <div *ngIf="loading">
+    <div class="spin-wrapper">
+      <div class="spinner"></div>
+    </div>
+  </div>
+  <div *ngIf="!loading">
+    <ion-fab-button routerLink="/actualites/admin" *ngIf="user.type ==  'admin' || user.type ==  'communication'">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+      <div  *ngIf="user.type == 'étudiant' && !access; else authorized">
+          <ion-card>
+              <ion-card-content>
+                  <p>Les actualités ne sont pas encore accessibles. Patience !</p>
+              </ion-card-content>
+          </ion-card>
+      </div>
+      <ng-template #authorized>
+          <ion-refresher (ionRefresh)="doRefresh($event)">
+              <ion-refresher-content
+                      pullingIcon="refresh"
+                      pullingText=""
+                      refreshingSpinner="spinner"
+                      refreshingText="">
+              </ion-refresher-content>
+          </ion-refresher>
+
+          <ion-card *ngIf="actus.length === 0">
+              <ion-card-content>
+                  Aucune actualité n'a encore été publiée, patience !
+              </ion-card-content>
+          </ion-card>
+
+          <ion-card *ngFor="let actu of actus">
+              <ion-card-header [routerLink]="'/actualites/single/'+actu.id">
+                  <div class="thumb" style="height: 180px; overflow: hidden;">
+                      <ion-img no-padding src="{{actu.img}}"></ion-img>
+                  </div>
+                  <ion-card-title>{{actu.titre}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                  {{ extrait(actu.content) }}
+                  <br/>
+                  <ion-toolbar>
+                      <ion-button fill="outline" [routerLink]="'/actualites/single/'+actu.id" float-left>Voir</ion-button>
+                      <ion-button fill="" color="secondary" [routerLink]="'/actualites/admin/'+actu.id" float-right *ngIf="user.type ==  'admin' || user.type ==  'communication'">
+                          <ion-icon color="tertiary" slot="icon-only" name="create"></ion-icon>
+                      </ion-button>
+                      <ion-button fill="" color="danger" (click)="deleteActu(actu.id)" float-right *ngIf="user.type ==  'admin' || user.type ==  'communication'">
+                          <ion-icon color="danger" slot="icon-only" name="trash"></ion-icon>
+                      </ion-button>
+                  </ion-toolbar>
+              </ion-card-content>
+          </ion-card>
+          <br/>
+          <div *ngIf="loadingMore && actus.length > 0" class="loadMore">
+              <ion-spinner></ion-spinner>
+              <ion-label>Chargement...</ion-label>
+          </div>
+          <ion-button expand="full" (click)="loadMore()" *ngIf="!finish && actus.length > 0">Charger plus</ion-button>
+          <div class="loadMore" *ngIf="finish">
+              <ion-label>Il n'y a plus d'actualité à charger !</ion-label>
+          </div>
+      </ng-template>
+  </div>
+
+
+</ion-content>

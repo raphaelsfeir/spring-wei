@@ -1,0 +1,45 @@
+<ion-content no-padding id="auth">
+  <ion-grid style="height: 75%;padding:0px">
+    <ion-row justify-content-center align-items-center style="height: 100vh">
+      <ion-img src="../../../assets/img/logo.png"></ion-img>
+
+
+      <form class="form auth" [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
+        <ion-item>
+          <ion-label><ion-icon name="person"></ion-icon></ion-label>
+          <ion-input placeholder="Nom d'utilisateur" type="text" formControlName="pseudo"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.pseudo">
+            <div class="error-message" *ngIf="validations_form.get('pseudo').hasError(validation.type) && (validations_form.get('pseudo').dirty || validations_form.get('pseudo').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label><ion-icon name="lock"></ion-icon></ion-label>
+          <ion-input placeholder="Mot de passe" type="password" formControlName="password" class="form-controll" required></ion-input>
+        </ion-item>
+          <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.password">
+                  <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                      {{ validation.message }}
+                  </div>
+              </ng-container>
+          </div>
+        <ion-item lines="none">
+          <ion-checkbox formControlName="rememberMe" slot="start"></ion-checkbox>
+          <ion-label>Rester connecté</ion-label>
+        </ion-item>
+        <ion-text float-start (click)="help()">
+          <ion-icon name="help-buoy"></ion-icon>Besoin d'aide ?
+        </ion-text>
+        <ion-text float-end [routerLink]="'/auth/forgotten-password'">
+          Mot de passe oublié
+        </ion-text>
+
+        <ion-button expand="full" type="submit">Connexion</ion-button>
+      </form>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Billets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="full">
+    <ion-item class="full" *ngIf="(billets | async)?.length == 0">
+      <ion-label>
+        <p>Aucun problème à signaler !</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngFor="let billet of (billets | async)" class="full" (click)="showInfos(billet.id)" tappable>
+      <ion-label [color]="billet.statut === 'Nouveau' ? 'primary': ''">
+          <h3>{{billet.utilisateur}}</h3>
+          <p>{{billet.code}}</p>
+      </ion-label>
+      <ion-badge>{{billet.statut}}</ion-badge>
+    </ion-item>
+  </ion-list>
+</ion-content>

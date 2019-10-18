@@ -1,0 +1,50 @@
+<app-header-menu></app-header-menu>
+
+<ion-content *ngIf="loading">
+  <div>
+    <div class="spin-wrapper">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</ion-content>
+<ng-template [ngIf]="bungalow?.responsable != 'false' && user?.bungalow != '0' && !loading" [ngIfElse]="error">
+  <ion-content padding>
+    <div *ngIf="!loading">
+      <h1>Gestion du bungalow</h1>
+      <p>Ton bungalow est le n°{{user?.bungalow}}</p>
+      <div>
+        <p>{{bungalow?.responsable}} est responsable de votre bungalow.</p>
+      </div>
+      <ion-list>
+        <ion-list-header>Locataires</ion-list-header>
+        <ion-item *ngFor="let loc of bungalow?.locataires">
+          {{loc}}
+        </ion-item>
+      </ion-list>
+      <ion-button expand="full" color="success" (click)="verif()">Emplacement</ion-button>
+    </div>
+  </ion-content>
+</ng-template>
+
+<ng-template #error>
+  <ng-template [ngIf]="bungalow?.numero != '0' && user?.bungalow !== '0' && !loading" [ngIfElse]="noBungalow">
+    <ion-content padding>
+      <div *ngIf="!loading">
+        <h1>Oups !</h1>
+        <p>Erreur, le bungalow n'a pas été configuré.</p>
+        <ion-button routerLink="/user/bungalow/respo">Configurer le bungalow</ion-button>
+      </div>
+    </ion-content>
+  </ng-template>
+
+
+  <ng-template #noBungalow>
+    <ion-content padding>
+      <div *ngIf="!loading">
+        <h1>Oups !</h1>
+        <p>Il semblerait que tu ne sois dans aucun bungalow !</p>
+        <ion-button (click)="goTo(_sys.DASHBOARD_LINK)">Rejoindre un bungalow</ion-button>
+      </div>
+    </ion-content>
+  </ng-template>
+</ng-template>

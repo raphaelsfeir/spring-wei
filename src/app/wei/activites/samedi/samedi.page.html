@@ -1,0 +1,26 @@
+<ion-content>
+  <div *ngIf="activites | async as activites; else loading">
+    <ion-card *ngIf="activites.length === 0">
+      <ion-card-content>
+        <p>Aucune activité n'a encore été publiée, patience !</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card *ngFor="let activite of (activites)"
+              [routerLink]="(user.type == 'admin' || user.type == 'communication') ? ['/wei/activites/admin/edit/', activite.jour, activite.id] : []">
+      <ion-card-header>
+        <ion-card-subtitle>De
+          {{activite.heure_debut.heure}}h{{activite.heure_debut.minutes}} à
+          {{activite.heure_fin.heure}}h{{activite.heure_fin.minutes}}</ion-card-subtitle>
+        <ion-card-title>{{activite.titre}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{activite.description}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ng-template #loading>
+    <div class="spin-wrapper">
+      <div class="spinner"></div>
+    </div>
+  </ng-template>
+</ion-content>

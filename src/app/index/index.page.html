@@ -1,0 +1,12 @@
+<app-header-menu></app-header-menu>
+
+<ion-content>
+    <ion-list no-padding>
+        <ion-item text-center *ngIf="app.user.type != 'étudiant'" no-padding class="index bde" [routerLink]="'/admin'">
+            <ion-label>Accéder à l'administration (BDE)</ion-label>
+        </ion-item>
+        <ion-item *ngFor="let p of gallery" [routerLink]="p.url" no-padding class="index">
+            <ion-img [src]="p.img"></ion-img>
+        </ion-item>
+    </ion-list>
+</ion-content>

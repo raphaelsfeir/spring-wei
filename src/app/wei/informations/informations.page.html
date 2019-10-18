@@ -1,0 +1,110 @@
+<app-header-menu></app-header-menu>
+
+<ion-content padding>
+    <div class="ion-text-center">
+        Quelques informations et numéros utiles <ion-icon style="color: red" name="heart"></ion-icon>
+    </div>
+    <ion-list>
+        <ion-button (click)="_sys.goTo(_sys.WEI_LINK + '/breviaire.pdf')" expand="full">
+            <ion-icon name="musical-notes" slot="start"></ion-icon>
+            Le bréviaire
+        </ion-button>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>En cas d'<strong>urgence</strong></ion-card-title>
+                <ion-card-subtitle>A ne contacter qu'en cas d'urgence</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img src="../../assets/img/numeros_urgence.png"></ion-img>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>Le BDE</ion-card-title>
+                <ion-card-subtitle>Pour avoir des infos</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list>
+                    <ion-list-header>Présidents</ion-list-header>
+                    <ion-item (click)="_sys.call('0695783585')">
+                        <ion-avatar slot="start">
+                            <img src="assets/img/equipe/louan.png">
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>Louan Dubois</h2>
+                            <p>06 95 78 35 85</p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item (click)="_sys.call('0787602529')">
+                        <ion-avatar slot="start">
+                            <img src="assets/img/equipe/adrien.png">
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>Adrien Misandeau</h2>
+                            <p>07 87 60 25 29</p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item (click)="_sys.call('0667981634')">
+                        <ion-avatar slot="start">
+                            <img src="assets/img/equipe/miveck.png">
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>Miveck Peinzi</h2>
+                            <p>06 67 98 16 34</p>
+                        </ion-label>
+                    </ion-item>
+
+                </ion-list>
+                <ion-list>
+                    <ion-list-header>Responsables animation</ion-list-header>
+                    <ion-item>
+                        <ion-avatar slot="start">
+                            <img src="assets/img/equipe/benoit.png">
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>Benoît Ribeiro</h2>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar slot="start">
+                            <img src="assets/img/equipe/david.png">
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>David Aubry</h2>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+                <ion-list>
+                    <ion-list-header>Responsable appli</ion-list-header>
+                    <ion-item>
+                        <ion-avatar slot="start">
+                            <img src="assets/img/equipe/raphael.png">
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>Raphaël Sfeir</h2>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+                <ion-button (click)="_sys.goTo(_sys.CAMPUS_LINK + '/?page_id=645')" expand="full">
+                    <ion-icon name="contacts" slot="start"></ion-icon>
+                    Toute l'équipe
+                </ion-button>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>L'application SpringWei</ion-card-title>
+                <ion-card-subtitle>Quelques infos au sujet de l'appli</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-item>Version : {{ version }}</ion-item>
+                <ion-item><a href="mailto:webmaster@bde.insa-cvl.fr">webmaster@bde.insa-cvl.fr</a></ion-item>
+                <ion-button (click)="_sys.goTo(_sys.DASHBOARD_LINK + '/policy')" expand="full">
+                    <ion-icon name="lock" slot="start"></ion-icon>
+                    Confidentialité
+                </ion-button>
+            </ion-card-content>
+        </ion-card>
+    </ion-list>
+    <p class="credits">Made with <ion-icon name="heart"></ion-icon> by Raphaël Sfeir</p>
+</ion-content>

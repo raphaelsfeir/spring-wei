@@ -1,0 +1,51 @@
+<app-header-menu></app-header-menu>
+
+<ion-content padding>
+    <div *ngIf="user.type == 'étudiant' && !access; else authorized">
+        <ion-card>
+            <ion-card-content>
+                <p>Les défis ne sont pas encore accessibles. Patience !</p>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <ng-template #authorized>
+        <div *ngIf="defis | async as defis; else loading">
+            <ion-fab-button [routerLink]="'/olympiades/admin'" *ngIf="user.type == 'admin' || user.type == 'animation'">
+                <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+            <p>Si tu veux avoir des informations, rends-toi au stand Anim !</p>
+            <ion-list>
+                <ion-item *ngIf="defis.length === 0">
+                    <ion-label text-wrap>
+                        <h3>Aucun défi n'a encore été publié, patience !</h3>
+                    </ion-label>
+                </ion-item>
+                <ion-item-sliding *ngFor="let d of (defis)">
+                    <ion-item [routerLink]="(user.type == 'admin' || user.type == 'animation') ? ['/olympiades/admin/edit/',d.id] : []">
+
+                        <ion-label text-wrap>
+                            <h3>{{d.titre}}</h3>
+                            <p *ngIf="user.type == 'admin' || user.type == 'animation'">{{d.validation}}</p>
+                        </ion-label>
+
+                        <ion-badge slot="" *ngIf="user.type == 'admin' || user.type == 'animation'">{{d.points}}</ion-badge>
+                    </ion-item>
+
+                    <ion-item-options side="end" *ngIf="user.type == 'admin' || user.type == 'animation'">
+                        <ion-item-option [routerLink]="(user.type == 'admin' || user.type == 'animation') ? ['/olympiades/admin/edit/',d.id] : []" color="primary">
+                            <ion-icon slot="icon-only" name="create"></ion-icon>
+                        </ion-item-option>
+                        <ion-item-option (click)="deleteDefi(d.id)" color="danger">
+                            <ion-icon slot="icon-only" name="trash"></ion-icon>
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-list>
+        </div>
+        <ng-template #loading>
+            <div class="spin-wrapper">
+                <div class="spinner"></div>
+            </div>
+        </ng-template>
+    </ng-template>
+</ion-content>

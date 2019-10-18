@@ -1,0 +1,12 @@
+<app-header-menu></app-header-menu>
+
+<ion-content padding>
+  <h1>Mon compte</h1>
+  <ion-list>
+    <ion-item>Pseudo : {{user.pseudo}}</ion-item>
+    <ion-item>Nom : {{user.name}}</ion-item>
+    <ion-item>Campus : {{user.campus}}</ion-item>
+  </ion-list>
+  <ion-button expand="block" color="primary" [routerLink]="'edit'">Changer le mot de passe</ion-button>
+  <ion-button expand="block" color="primary" (click)="openBillet()">Signaler un problème</ion-button>
+</ion-content>

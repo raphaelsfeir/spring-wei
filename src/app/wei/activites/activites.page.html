@@ -1,0 +1,29 @@
+<app-header-menu></app-header-menu>
+
+<ion-content>
+    <div *ngIf="user.type == 'étudiant' && !access; else authorized">
+        <ion-card>
+            <ion-card-content>
+                <p>Les activités ne sont pas encore accessibles. Patience !</p>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <ng-template #authorized>
+        <ion-fab-button routerLink="/wei/activites/admin" *ngIf="(user.type == 'admin' || user.type == 'communication')">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-tabs appSwipetab (ionTabsDidChange)="ionTabsDidChange($event)" (tabChange)="onTabChange($event)" #tabs>
+            <ion-tab-bar slot="top">
+                <ion-tab-button tab="vendredi">
+                    <ion-label>Vendredi</ion-label>
+                </ion-tab-button>
+                <ion-tab-button tab="samedi">
+                    <ion-label>Samedi</ion-label>
+                </ion-tab-button>
+                <ion-tab-button tab="dimanche">
+                    <ion-label>Dimanche</ion-label>
+                </ion-tab-button>
+            </ion-tab-bar>
+        </ion-tabs>
+    </ng-template>
+</ion-content>

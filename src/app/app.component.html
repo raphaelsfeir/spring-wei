@@ -1,0 +1,59 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu side="start" menuId="nav">
+      <ion-header>
+        <ion-toolbar color="success">
+          <ion-title text-center>MENU</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerLink]="'/'" lines="none">
+              <ion-label>Accueil</ion-label>
+            </ion-item>
+            <ion-item  *ngFor="let p of appPages" [routerDirection]="'root'" [routerLink]="[p.url]" lines="none">
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+
+    <ion-menu side="end" menuId="user" *ngIf="user">
+      <ion-header>
+        <ion-toolbar color="success">
+          <ion-title text-center>{{user.name}}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle menu="user" auto-hide="false">
+            <ion-item lines="none" [routerLink]="'/user/bungalow'">
+              <ion-label>Mon bungalow</ion-label>
+            </ion-item>
+            <ion-item lines="none" [routerLink]="'/admin'" *ngIf="user.type != 'étudiant'">
+              <ion-label>Acces BDE</ion-label>
+              <ion-icon name="notifications" *ngIf="(newBillets|async)?.length > 0"></ion-icon>
+            </ion-item>
+            <ion-item lines="none" [routerLink]="'/user'">
+              <ion-label>Mon compte</ion-label>
+            </ion-item>
+              <ion-item lines="none" (click)="openBillet()">
+                  <ion-label>Signaler</ion-label>
+              </ion-item>
+            <ion-item lines="none" [routerLink]="" (click)="logout()">
+              <ion-label>Deconnexion</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

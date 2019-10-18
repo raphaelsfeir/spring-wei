@@ -1,0 +1,27 @@
+<app-header-back titre="Ajouter un défi" BackUrl="/olympiades"></app-header-back>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="submit(f)">
+      <ion-input placeholder="Nom du défi" name="titre" [ngModel]="defi.titre" required></ion-input>
+      <ion-input placeholder="Nombre de points" type="number" name="points" [ngModel]="defi.points" required></ion-input>
+    <ion-item-group *ngIf="defi.id">
+      <ion-item-divider>
+        <ion-label>Défi validé par : </ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let f of (familles | async)">
+        <ion-label>{{f.nom}}</ion-label>
+        <ion-checkbox slot="start" name="{{f.nom}}" [ngModel]="valide(f.nom, defi)"></ion-checkbox>
+      </ion-item>
+    </ion-item-group>
+
+
+    <ion-toolbar color="success">
+      <ion-button expand="full" fill="clear" type="submit">
+        <ion-icon name="checkmark" slot="start"></ion-icon>
+        Créer le défi
+      </ion-button>
+    </ion-toolbar>
+
+  </form>
+</ion-content>
+

@@ -1,0 +1,24 @@
+ion-card:nth-last-of-type(1){
+  margin-bottom: 80px;
+}
+.title-ios.sc-ion-title-h {
+  width: unset !important;
+}
+.loadMore {
+  width: 50%;
+  text-align: center;
+  margin: 0 auto 20px;
+
+  ion-spinner {
+    margin-right: 15px;
+    vertical-align: middle;
+  }
+}
+ion-refresher {
+  //margin-top: 50px;
+  z-index: 99999;
+
+  ion-refresher-content {
+    background: #fff !important;
+  }
+}

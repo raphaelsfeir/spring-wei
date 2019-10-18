@@ -1,0 +1,32 @@
+<app-header-back titre="Changer le mot de passe" BackUrl="/user"></app-header-back>
+
+<ion-content padding>
+  <form class="form auth" [formGroup]="validations_form"  (ngSubmit)="changePass(validations_form.value)">
+
+    <ion-item>
+      <ion-label><ion-icon name="lock"></ion-icon></ion-label>
+      <ion-input placeholder="Nouveau mot de passe" type="password" formControlName="password" validateEqual="password_confirm"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label><ion-icon name="lock"></ion-icon></ion-label>
+      <ion-input placeholder="Confirmer le mot de passe" type="password" formControlName="password_confirm" required validateEqual="password"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.password_confirm">
+        <div class="error-message" *ngIf="validations_form.get('password_confirm').hasError(validation.type) && (validations_form.get('password_confirm').dirty || validations_form.get('password_confirm').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-button expand="full" type="submit"  [disabled]="!validations_form.valid">Changer le mot de passe</ion-button>
+  </form>
+</ion-content>

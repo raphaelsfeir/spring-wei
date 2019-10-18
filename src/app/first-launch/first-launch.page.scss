@@ -1,0 +1,60 @@
+ion-slide {
+  padding: 20px;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  overflow: hidden;
+}
+.swiper-pagination-bullet {
+  background: #000 !important;
+}
+
+ion-img {
+  max-width: 50vw;
+  max-height: 50vh;
+  overflow: hidden;
+}
+ion-list{
+  width: 100vw;
+  text-align: center !important;
+}
+ion-item{
+  background-color: rgba(0,0,0,0) !important;
+  text-align: center !important;
+}
+
+.step-one {
+  background: var(--ion-color-success);
+  color: var(--ion-color-primary-contrast);
+  a {
+    color: var(--ion-color-primary-contrast) !important;
+  }
+  ion-button {
+    margin-bottom: 15px;
+  }
+}
+
+.step-two {
+  background-image: linear-gradient(to right bottom, #eaac25, #eda12d, #ef9735, #ef8d3d, #ee8445, #ee8144, #ef7f44, #ef7c43, #f27f39, #f4822e, #f58620, #f58a07);
+  color: var(--ion-color-success-contrast);
+}
+
+.step-three {
+  background-image: linear-gradient(to right bottom, #00a676, #00ab92, #21afa9, #49b1b9, #6cb3c3, #7cb1c6, #8cafc6, #99aec3, #9ea9bf, #a1a4b9, #a4a0b3, #a69cac);
+  color: var(--ion-color-dark-contrast);
+}
+
+.step-four {
+  background-image: linear-gradient(to right bottom, #ff7338, #f87e43, #f18950, #e9925d, #e29a6b, #e39f6c, #e3a36d, #e4a86f, #eaac61, #edb153, #eeb642, #edbd2d);
+  color: var(--ion-color-primary-contrast);
+}
+
+.step-bungalow {
+  background-image: radial-gradient(circle, #f4d35e, #f3cf56, #f1cb4d, #f0c744, #efc33b, #eec138, #eec035, #edbe32, #edbf36, #edc039, #edc03d, #edc140);
+  color: var(--ion-color-primary-contrast);
+}
+
+.step-five {
+  background-image: linear-gradient(to right bottom, #53c8ef, #00d0de, #06d5ba, #62d58a, #9fd059, #adce4c, #acd044, #8dd558, #69d870, #36db89);
+  color: var(--ion-color-primary-contrast);
+}

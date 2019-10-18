@@ -1,0 +1,320 @@
+NB:
+Changer les ressources : ionic cordova resources --no-cordova-res
+AMELIORATIONS:
+
+1) Ajout de fonctionnalités
+- Changer le style en fonction de la famille de l'utilisateur
+
+2) Pages
+
+3) Modifications base de données
+
+4) Corrections
+- Mise en cache des actualités chargées (mode offline)
+- Centrer la map sur le marqueur du bungalow
+- Accès à la page BR bloque l'accès aux actus (ERR_SPDY_PING_FAILED)
+
+****************************************************
+**v1.2.14: Corrections**
+
+[CORRECTIONS]:
+- Correction de l'heure des activités (format)
+
+****************************************************
+**v1.2.13: Corrections**
+
+[CORRECTIONS]:
+- Correction du chargement d'actualités (afficher plus)
+
+****************************************************
+**v1.2.12: Corrections**
+
+[CORRECTIONS]:
+- Crédits à la page d'informations
+
+****************************************************
+**v1.2.11: iOS**
+
+[CORRECTIONS]:
+- Modification pour iOS seulement
+
+****************************************************
+**v1.2.10: Corrections**
+
+[CORRECTIONS]:
+- Correction du chargement d'actualités en cas de 0 actualités
+
+****************************************************
+**v1.2.9: Corrections**
+
+[CORRECTIONS]:
+- Correction de la page d'actualité single
+- Correction de la date de publication
+- Correction de la page Bungalow en cas de bungalow 0
+
+****************************************************
+**v1.2.8: Amélioration du chargement**
+
+[CORRECTIONS]:
+- Amélioration du chargement des actualités
+- Suppression de la famille de l'utilisateur
+- Importation des packages nécessaires à Firebase seulement
+- Correction du bug de chargement infini de la map
+
+****************************************************
+**v1.2.7: Corrections graphiques**
+
+[CORRECTIONS]:
+- Corrections de bugs graphiques
+
+****************************************************
+**v1.2.6: Ajustements pour cross-platform**
+
+[CORRECTIONS]:
+- Utilisation du stockage natif à la place du stockage local *(ie: utilisation de Ionic Storage)*
+
+****************************************************
+**v1.2.5: Ajustements**
+
+[CORRECTIONS]:
+- Amélioration de la page `login`
+    - Développement du jeu de couleurs
+    - Développement du contrôle des identifiants
+    - Changement du logo
+- Compression des images envoyées sur les actualités
+- Suppression de CodePush dans les fichiers natifs
+- Correction du bug de hauteur pour les actualités
+
+****************************************************
+**v1.2.4: Interface admin**
+- Ajout d'une interface `Bureau Restreint`
+    - Permet d'ouvrir l'accès à : **la carte**, **les actus**, **les activités**, **les défis**
+
+[CORRECTIONS]:
+- Restructuration de la base de données
+    * `/billets` -> `/admin/bde/tickets`
+    * Création de `/admin/globals` pour gérer les paramètres globaux de l'application pour administrateurs (ex : accès à la carte)
+- Mise en place de la fonctionnalité `swipe` pour les tabs
+
+****************************************************
+**v1.2.3: Amélioration de la carte**
+- Changement du fond de carte de camping
+    - 2 versions : vierge (uniquement les emplacements) et détaillée
+
+[CORRECTIONS]:
+- Le numéro du bungalow est maintenant un `string` (gestion des XX B)
+****************************************************
+**v1.2.2 : Notifications plannifiées**
+- Mise en place d'une API REST de planification pour les notifications
+
+
+****************************************************
+**v1.2.1 : Connexion améliorée**
+- Amélioration de la connexion stockée
+    - Stockage local : *rememberMe*, *user*, *token*
+
+[CORRECTIONS] :
+- Ré-ajustement de toute la fonction `login()`
+- Stockage dynamique : les champs variables de `User` sont: **bungalow** et **type** (période de test uniquement)
+    - Ré-allocation de la mémoire si l'utilisateur accède à la page *bungalow* avec un bungalow différent de celui enregistré
+
+****************************************************
+**v1.2.0 : Amélioration de l'UX**
+- Restructuration de l'interface User : ajout d'un champ `appLaunch` pour détecter le premier lancement de l'appli
+    * Si `!appLaunch` => On affiche un écran d'accueil pour présenter l'appli
+    * Sinon, on masque l'écran d'accueil
+- Ajout d'une aide lors de la connexion
+
+[CORRECTIONS] :
+- Suppression de CodePush, cause : génération de bugs au démarrage
+- Mise en style du message d'erreur
+
+****************************************************
+
+**v1.1.4 : Ajustements pour iOS**
+- Correction de l'UX pour iOS
+- Intégration du bréviaire
+
+[CORRECTIONS] :
+- Amélioration de l'UI Design et changement des images de pages
+- BUG : Détection de l'adresse mail lors de la connexion, règle le problème du chargement infini
+- Admin : Affichage du nom, du problème concerné par le billet
+
+****************************************************
+
+**v1.1.3 : Amélioration de l'UX (bis)**
+- Ajout d'une fonction `extrait()` permettant d'extraire les 60 premiers caractères
+    - Utilisation dans les actualités
+- Envoi de notifications aux personnes concernées lors de la modification de publications
+    - Activités + Actualités -> Communication + BR
+    - Défis -> Animation
+
+[CORRECTIONS] :
+- Changement de l'URL dashboard => https://wei.insa-cvl.org
+- Clic sur les notifications => Amène vers la page concernée
+- Remise à niveau de CodePush
+
+****************************************************
+
+**v1.1.2 : Amélioration de l'UX**
+- Etude en basse connexion (Edge ou équivalent)
+    - Mise en place d'un spinner de chargement
+    - Réduction des appels à Firebase
+- Chargement des actualités (infiniteScroll)
+    -> Correction : chargement avec virtualScroll
+
+[CORRECTIONS] :
+- Fab button placé en position fixée dans la page d'actualités
+- Carte du camping accessible uniquement par les administrateurs
+- Affichage d'un toast lors de la modification d'une actualité
+- Modification de l'affichage des membres du BDE
+    - Utilisation de `avatar` etc.
+- Mise en place d'une constante CAMPUS_LINK : ouverture du site dans le navigateur natif
+
+****************************************************
+
+**v1.1.1 : Carte du bungalow**
+- Utilisation de Leaflet pour générer la carte du camping
+    - Positionnement des bungalows (coordonées en CRS Simple)
+        - Les positions sont enregistrées dans la base de données
+- Ajout de l'équipe du BDE (présidents et responsable anim)
+- Ajout de la page de confidentialité sur le dashboard
+    - Boutons ouvrant le navigateur depuis l'application
+
+[CORRECTIONS] :
+- Changement du design, couleur primaire = #fcab2a (orange)
+- Changement du logo linéaire pour une couleur de #325e7b
+- Suppression de l'enregistrement de Token pour les notifications
+
+****************************************************
+**v1.1.0 : Migration et améliorations**
+- Intégration du plan du camping avec la position du bungalow
+    - Difficulté : Placer le marqueur; prendre en compte les dimensions de l'écran + agrandissement de l'image
+        - Solutions:
+            1) Réfléchir et essayer de régler le problème full CSS (+JS ?) : <3
+            2) Solution brutale, faire une map différente pour tous les bungalows avec un marqueur fixe
+* Création du compte Sendgrid pour gérer l'envoi de mails marketing
+    - Développement de l'API 'sendmail', reçoit une requête de la page d'incription {prénom, pseudo, mail, password}
+        - Envoie le mail avevc sendgrid
+        - Hébergement sur le compte HEROKU de Raph
+    - Changement de l'inscription : identifiants envoyés automatiquement à l'utilisateur
+        - Pour s'inscrire, l'étudiant doit remplir le papier habituel d'inscription avec le chèque, le donner au BDE
+            - Le BDE inscrira l'étudiant sur la page d'inscription
+                --> Les identifiants (pass généré aléatoirement) lui seront envoyés par mail
+            - L'étudiant aura accès au tableau de bord de l'application depuis lequel il pourra rejoindre un bungalow, gérer son compte et télécharger l'application
+- Ajout du bouton "Accéder à l'administration (BDE)" sur la page d'accueil
+- Création du tableau de bord, adresse : https://wei.campus.insa-cvl.fr/dashboard
+    * Connexion et accès au compte => Gérer son compte et son bungalow (rejoindre, définir respo)
+    * Changement du lien d'action des mails Firebase
+        - https://wei.campus.insa-cvl.fr/dashboard?mode=resetPassword&oobCode=abcd -> Changer le mot de passe
+
+
+[CORRECTIONS] :
+- Bug du menu "user" lors de la première connexion qui ne s'affichait pas (==> récupération de l'array 'user' après connexion et non à l'initialisation de l'appli)
+- Adresse mail du pôle info : webmaster@bde.insa-cvl.fr
+****************************************************
+**v1.0.4 : Bungalow**
+- Modification de la page "Mon bungalow" pour afficher le responsable, numéro et locataires
+    * Si responsable === false => Redirection vers la page "respo" pour configurer le bungalow
+- Création de la page "respo"
+    - Slider d'introduction pour mise en place du bungalow :
+        * Vérification de la liste des locataires : si incorrecte, envoyer notification vers admin
+        * Définition d'un responsable : obligatoire
+- Page admin pour gestion des billets (problème de bungalow, bug à signaler) + gestion utilisateurs
+	* Billets => Clique dessus ouvre une alerte avec les infos
+	* gestion utilisateur : Permet d'avoir des infos sur un utilisateur recherché
+- Ajout de notifications spéciales BDE (si type === 'bde' ==> inscription au topic 'admin')
+- Ajout d'un logo et d'un splashscreen
+
+[CORRECTIONS] :
+- Amélioration du thème => Stockage des variables et styles dans theme/variables.scss
+- Corrections du bug USER undefined => initUser -> Promise
+- Ajout d'un champ pseudo à l'inscription
+
+****************************************************
+**v1.0.3 : Photos**
+- Ajout de la fonctionnalité de prise de photo sur la création d'actualités
+	!! Il faut vérifier que le ratio de la caméra soit fixé à 16:9
+- Ajout de la fonctionnalité "récupérer une photo depuis la galerie"
+
+[BASE DE DONNEES] :
+- Création de la collection 'bungalow' => Documents : 'bungalow_[numero]'
+    * emplacement : string
+    * locataires: string[]
+    * numero: number
+    * responsable: string
+
+[CORRECTIONS] :
+- Amélioration des formulaires (CSS et remise en forme)
+- Changement du thème (success -> orange au lieu de vert)
+- Correction des alertes redirigeant sur une page AVANT d'avoir appuyé sur une bouton
+- Affichage d'une confirmation pour suppression d'article, d'activité et déconnexion
+
+****************************************************
+**v1.0.2 : Notifications et ajustements**
+- Ajout de fonctionnalité "Se souvenir de moi" (à améliorer pour éviter le stockage local)
+- Mise en place de notifications lors de l'ajout d'articles, de défis et d'activités
+	* Ajout d'une collection 'devices'pour regrouper l'ensemble des appareils utilisant l'application (pour tokens FCM)
+
+
+****************************************************
+**v1.0.1 : Une grande avancée**
+- Mise en place de la fonctionnalité de mise à jour avec CodePush
+	1) Faire un build avec "ionic cordova build <android|ios>"
+	2) envoyer sur CodePush "code-push release SpringWei-<android|ios> ./platforms/android/app/src/main/assets/www <Version à mettre à jour> [-m si obligatoire]"
+
+
+[CORRECTION] :
+- Modification du design : les images d'accueil prennent désormais toute la largeur
+
+****************************************************
+**v1.0.0 : Reprise à zéro**
+- Reprise à zéro de l'application : réorganisation des routes, pages, arborescence
+- Mise en place de components pour faciliter l'intégratin du header
+- Intégration des base de données FIREBASE pour actualités, utilisateurs, activités, olympiades
+	* Authentification gérée par firebase.auth() => Service d'authentification
+	* Gestion des utilisateurs (informations) avec les databases
+- Intégration du changement de mot de passe et de réinitialisation de mot de passe
+	* Envoi de mail en cas d'oubli du mot de passe
+
+[CORRECTION] :
+- Modification du design
+    - color primary sur le header
+    - ajout d'icônes sur le formulaire de connexion
+
+****************************************************
+v0.0.4 : Modifications des fonctionnalités présentes
+- Intégration de Firebase pour l'authentification (utilisation de pseudo + password)
+- Modification de la page de login
+
+[CORRECTION] :
+- Authentificatin avec Firebase (ce sera plus simple pour gérer les notifications plus tard)
+- Correction du BUG affichage du chargement : disparition lorsque le chargement TOTAL est terminé
+
+****************************************************
+v0.0.3 : Modifications des fonctionnalités présentes
+- Mise en place d'alertes en cas de connexion échouée (identifiants incorrects ou erreur serveur)
+- Création des pages "Olympiades" et de la section d'administration Olympiades pour créer, modifier, supprimer et afficher les défis
+- Permettre édition et suppression d'articles
+
+[CORRECTION] : Modification de l'interface : Section admin des olympiades dans des tabs (slide pour modifier un défi) et bouton-icône pour modifier article
+
+----------------------------------------------------
+v0.0.2 : Modification des fonctionnalités présentes
+- Mise en place d'un système d'authentification JWT avec base de données externe (gérée avec Node et Express js)
+	* Table user => id, nom, pseudo, password, type
+	- 'type' est la catégorie d'utilisateur : 0 = admin, 1 = communication, 2 = étudiant
+		Communication permet la création, suppression et édition d'actualités
+- Mise en place de la création d'actualités
+	[version] actualités uniquement locales
+[CORRECTIONS] :
+	- Largeur des images en page d'accueil prennent 100% de la largeur
+	- Correction du bug de menu (clic sur un lien du menu user ouvre le menu de navigation principal)
+
+--------------------------------------------------
+v0.0.1 : Première version
+- Création de l'application (bases)
+	- Gestion de l'utilisateur avec tableau
+	- Création des pages : Home, login, activités, mon bungalow, infos, actualites, actu-single
+- Simulation d'authentification (tableau récupère valeurs de connexion, 0 vérification)
+- Déconnexion

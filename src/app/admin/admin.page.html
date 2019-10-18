@@ -1,0 +1,22 @@
+<app-header-menu></app-header-menu>
+
+<ion-content>
+  <ion-tabs appSwipetab (ionTabsDidChange)="ionTabsDidChange($event)" (tabChange)="onTabChange($event)" #tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="billets">
+        <ion-badge *ngIf="(billets | async)?.length > 0"></ion-badge>
+        <ion-icon name="paper"></ion-icon>
+        <ion-label>Billets</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="utilisateurs">
+        <ion-icon name="contacts"></ion-icon>
+        <ion-label>Utilisateurs</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="bureau" *ngIf="user.type == 'admin'">
+        <ion-icon name="construct"></ion-icon>
+        <ion-label>Paramètres</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+</ion-content>

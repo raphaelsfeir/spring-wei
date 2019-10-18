@@ -1,0 +1,34 @@
+<app-header-back *ngIf="defi.id" [titre]="'Editer '+defi.titre" BackUrl="/olympiades"></app-header-back>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="submit(f)">
+      <ion-input placeholder="Nom du défi" name="titre" [ngModel]="defi.titre" required></ion-input>
+      <ion-input placeholder="Nombre de points" type="number" name="points" [ngModel]="defi.points" required></ion-input>
+    <ion-item-group *ngIf="defi.id">
+      <ion-item-divider>
+        <ion-label>Défi validé par : </ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let f of (familles | async)">
+        <ion-label>{{f.nom}}</ion-label>
+        <ion-checkbox slot="start" name="{{f.nom}}" [ngModel]="valide(f.nom, defi)"></ion-checkbox>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-row no-padding text-center *ngIf="defi.id" style="margin-top: 30px">
+      <ion-col no-padding>
+        <ion-button expand="full" color="danger" (click)="deleteDefi()">
+          <ion-icon name="trash" slot="start"></ion-icon>
+          Supprimer
+        </ion-button>
+      </ion-col>
+      <ion-col no-padding>
+        <ion-button expand="full" color="success" type="submit">
+          <ion-icon name="save" slot="start"></ion-icon>
+          Enregistrer
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>
+

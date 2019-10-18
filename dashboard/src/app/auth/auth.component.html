@@ -1,0 +1,56 @@
+<div class="limiter">
+  <div class="container-auth">
+    <div class="wrap-auth">
+      <form class="auth-form" (ngSubmit)="login(f)" #f="ngForm">
+					<span class="auth-form-title p-b-26">
+						Salut !
+					</span>
+        <div *ngIf="loading">
+          <div class="spin-wrapper">
+            <div class="spinner"></div>
+          </div>
+        </div>
+        <div id="authFormulaire">
+          <div class="text-center">
+          <span class="p-b-30 txt2">
+						Connecte-toi avec les identifiants que tu as reçu par mail lors de ton inscription au SpringWEI 2019 !
+          </span>
+          </div>
+          <br/>
+          <div class="wrap-inputAuth">
+            <input class="inputAuth" type="text" name="pseudo" ngModel>
+            <span class="focus-inputAuth" data-placeholder="Nom d'utilisateur"></span>
+          </div>
+          <div class="wrap-inputAuth">
+						<span class="btn-show-pass">
+              <i class="fa fa-eye"></i>
+						</span>
+            <input class="inputAuth" type="password" name="pass" ngModel>
+            <span class="focus-inputAuth" data-placeholder="Mot de passe"></span>
+          </div>
+          <div class="wrap-inputAuth" style="border: none">
+            <mat-checkbox name="persistence" ngModel>Se souvenir de moi</mat-checkbox>
+          </div>
+          <div class="container-auth-form-btn">
+            <div class="wrap-auth-form-btn">
+              <div class="auth-form-bgbtn"></div>
+              <button class="auth-form-btn" type="submit">
+                Connexion
+              </button>
+            </div>
+            <div class="alert alert-danger"  *ngIf="resultat != ''">
+            <span class="text-center">
+              {{resultat}}
+            </span>
+            </div>
+          </div>
+          <div class="text-center p-t-115">
+            <a class="txt1" routerLink="/auth/forgot-password">
+              Mot de passe oublié ?
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

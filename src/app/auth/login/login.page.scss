@@ -1,0 +1,34 @@
+ion-content {
+  max-height: 100vh !important;
+  overflow: hidden;
+}
+ion-img {
+  height: 25%;
+  margin-top:7.6%;
+  margin-bottom: 9%
+}
+ion-button{
+  margin-top: 25%;
+  margin-left: 0px;
+  margin-right:0px;
+  height: 50px !important;
+}
+form{
+  width: 100%
+}
+ion-text{
+  padding: 15px;
+  text-decoration: underline;
+  color: var(--ion-color-success-contrast);
+  font-size: 12px;
+  ion-icon {
+    margin-right: 5px
+  }
+}
+.validation-errors {
+  text-align: center;
+  margin: 10px;
+  .error-message {
+    color: #fff !important;
+  }
+}

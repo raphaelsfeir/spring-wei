@@ -1,0 +1,225 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Aide</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Bienvenue dans le tableau de bord de l'application SpringWEI ! Ici, tu pourras gérer ton compte, ton bungalow et aussi télécharger l'application qui te servira durant le weekend.</p>
+      <p>Si tu as des questions, cette page est là y répondre. Si ta question ne figure pas parmi la liste ci-dessous, nous t'invitons à contacter un membre du BDE sur ton campus.</p>
+      <br/><p>Ton BDE adoré <3</p>
+    </mat-card-content>
+  </mat-card>
+
+  <br/>
+  <h5>Mon compte</h5>
+  <br/>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Je n'ai pas reçu de mail
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Il y a deux possibilités : </p>
+    <ul>
+      <li><strong>Tu ne t'es pas encore inscrit au weekend : </strong>retrouve rapidement le BDE dans le hall de ton campus et donne leur le formulaire d'inscription rempli ainsi que le chèque d'inscription.</li>
+      <li><strong>Tu t'es déjà inscrit au weekend : </strong>tu recevras bientôt un mail. Si ce n'est toujours pas le cas, vérifie tes courriers indésirables ou, le cas échant, signale-le au BDE dans ton campus.</li>
+    </ul>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Quel est mon nom d'utilisateur ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Le nom d'utilisateur est ce qui se trouve avant <em>@insa-cvl.fr</em>.
+      <br/>Exemple : Le nom d'utilisateur associé à l'adresse mail <strong>toto.titi2@insa-cvl.fr</strong> est <strong>toto.titi2</strong></p>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        J'ai oublié mes identifiants
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Tes identifiants t'ont été envoyés par mail après ton inscription au weekend. Si tu as oublié ton mot de passe, tu peux
+    <a style="text-decoration: underline;" routerLink="/auth/forgot-password">réinitialiser ton mot de passe</a>.</p>
+  </mat-expansion-panel>
+
+  <br/>
+  <h5>L'application mobile</h5>
+  <br/>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Sur quelles plateforme est disponible l'appli ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>Elle est disponible sur Android et iOS.</p>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Quand pourrai-je télécharger l'appli ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>L'application est désormais disponible sur Google Play et sur l'App Store.</p>
+    <div class="row">
+      <div class="col">
+        <a href="https://play.google.com/store/apps/details?id=com.campus_cvl.springwei" target="_blank">
+          <img src="assets/google-play.png" alt="Télécharger sur Google Play" width="200">
+        </a>
+      </div>
+      <div class="col">
+        <a href="https://apps.apple.com/fr/app/springwei/id1478738699" target="_blank">
+          <img src="assets/app-store.png" alt="Télécharger sur l'App Store" width="200">
+        </a>
+      </div>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Je ne réussis pas à me connecter
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>Si tu as oublié ton mot de passe, tu peux le <a style="text-decoration: underline;" routerLink="/auth/forgot-password">réinitialiser</a>.
+    Si tu es sûr de tes identifiants et de ton nom d'utilisateur, signale-le au BDE dans ton campus.</p>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        C'est un bug ? C'est une faille ? Non ! C'est une fonctionnalité !
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>L'application est belle et innovante mais imparfaite !
+      Si tu trouves le moindre bug, <a style="text-decoration: underline;" href="mailto:webmaster@bde.insa-cvl.fr">contacte le BDE</a> et nous le corrigerons rapidement !</p>
+  </mat-expansion-panel>
+
+
+  <br/>
+  <h5>Le tableau de bord</h5>
+  <br/>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Pourquoi je ne réussis pas à me connecter ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Il y a deux possibilités : </p>
+    <ul>
+      <li><strong>Tu ne t'es pas encore inscrit au weekend : </strong>retrouve rapidement le BDE dans le hall de ton campus et donne leur le formulaire d'inscription rempli ainsi que le chèque d'inscription.</li>
+      <li><strong>Tu t'es déjà inscrit au weekend : </strong>tu recevras bientôt un mail avec tes identifiants. Tu pourras ensuite te connecter.</li>
+    </ul>
+
+    <div class="alert alert-warning">Attention ! Ne partage jamais ton mot de passe !</div>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Mon bungalow doit être modifié
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Si tu souhaites changer la personne responsable de votre bungalow ou carrément changer la liste des locataires, nous t'invitons à venir nous voir pour qu'on règle ce problème.</p>
+
+  </mat-expansion-panel>
+
+
+  <br/>
+  <h5>Le WEI</h5>
+  <br/>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Quelles sont les dates du WEI ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Le Week-End d'Intégration se déroulera du 27 au 29 septembre.</p>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Où se déroulera le WEI ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Haha surprise...</p>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Est-ce que c'est dangereux ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Chaque année des règles strictes de sécurité sont mises en place. Il n'y a jamais eu de problème !</p>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        J'ai le droit de prendre de l'alcool avec moi ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>NON !</p>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Qu'est-ce que je dois prendre ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Vous dormirez dans des bungalows. Nous te conseillons donc de prendre :</p>
+    <ul>
+      <li>Vêtements de rechange</li>
+      <li>Sac de couchage</li>
+      <li>Maillot de bain</li>
+      <li>Serviette</li>
+      <li>Tout ce dont tu as besoin pour l'hygiène (il y a des douches): c'est important</li>
+      <li>Ton plus beau sourire</li>
+    </ul>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Il y a des aftermovies ?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>Bien sûr !</p>
+    <div class="row">
+      <div class="col text-center">
+        <h6>INS'Action</h6>
+        <a href="https://vimeo.com/insactioncvl" target="_blank">
+          <i class="fab fa-vimeo fa-4x"></i>
+        </a>
+      </div>
+      <div class="col text-center">
+        <h6>le BDE</h6>
+        <a href="https://vimeo.com/campusinsacvl" target="_blank">
+          <i class="fab fa-vimeo fa-4x"></i>
+        </a>
+      </div>
+    </div>
+  </mat-expansion-panel>
+  <br/>
+  <mat-divider></mat-divider>
+  <br/>
+  <div class="wrap-auth-form-btn">
+    <div class="auth-form-bgbtn"></div>
+    <a class="auth-form-btn" href="mailto:webmaster@bde.insa-cvl.fr">Contacter le BDE</a>
+  </div>
+</div>

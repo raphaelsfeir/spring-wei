@@ -1,0 +1,13 @@
+ion-img {
+  //max-height: 35vh;
+  width: 100vw;
+  overflow: hidden;
+  margin-right: -20px;
+}
+ion-content {
+  padding-right: 0px !important;
+}
+ion-item{
+  --ion-safe-area-right: 0;
+}
+

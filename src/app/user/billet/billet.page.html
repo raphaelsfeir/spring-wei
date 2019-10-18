@@ -1,0 +1,25 @@
+<app-header-menu></app-header-menu>
+
+<ion-content padding>
+    <h1>Signaler un problème</h1>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>En cas d'<strong>urgence</strong></ion-card-title>
+            <ion-card-subtitle>A ne contacter qu'en cas d'urgence</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-img src="assets/img/numeros_urgence.png"></ion-img>
+        </ion-card-content>
+    </ion-card>
+    <p>Pour signaler un problème, remplis le champ ci-dessous</p>
+    <form #f="ngForm" (ngSubmit)="submit(f)">
+        <ion-textarea auto-grow [ngModel]="" required name="problem" placeholder="Description concise"></ion-textarea>
+
+        <ion-toolbar color="success">
+            <ion-button expand="full" fill="clear" type="submit">
+                <ion-icon name="help-buoy" style="margin-right:10px"></ion-icon>
+                Signaler
+            </ion-button>
+        </ion-toolbar>
+    </form>
+</ion-content>

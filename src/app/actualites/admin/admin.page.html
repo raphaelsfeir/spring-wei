@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/actualites">
+
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="actu.id">Editer {{actu.titre}}</ion-title>
+    <ion-title *ngIf="!actu.id">Ajouter un article</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="admin">
+  <form #f="ngForm" (ngSubmit)="submit(f)">
+      <ion-input [ngModel]="actu.titre" required name="titre" placeholder="Titre de l'article"></ion-input>
+      <ion-textarea auto-grow [ngModel]="actu.content" required name="content" placeholder="Ecrire le contenu de l'article..."></ion-textarea>
+    <ion-item *ngIf="!actu.img">
+      <ion-button class="upload" (click)="upload()" color="light">
+        <div>
+          <ion-icon name="camera"></ion-icon><br/>
+          <label>Télécharger une photo</label>
+        </div>
+      </ion-button>
+    </ion-item>
+    <div *ngIf="actu.img" style="margin-bottom: 30px">
+      <ion-input type="text" [(ngModel)]="actu.img" required name="img" hidden></ion-input>
+      <ion-card button (click)="upload()">
+        <ion-card-header>
+          <div class="thumb" style="height: 200px; overflow: hidden;">
+            <ion-img [src]="actu.img"></ion-img>
+          </div>
+          <ion-card-title>Changer la photo</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+
+    <ion-toolbar *ngIf="!actu.id" color="success">
+      <ion-button expand="full" fill="clear" type="submit">
+        <ion-icon name="checkmark" slot="start"></ion-icon>
+        Créer l'article
+      </ion-button>
+    </ion-toolbar>
+
+    <ion-row no-padding text-center *ngIf="actu.id" style="margin-top: 30px">
+      <ion-col no-padding>
+        <ion-button expand="full" color="danger" (click)="deleteActu()">
+          <ion-icon name="trash" slot="start"></ion-icon>
+          Supprimer
+        </ion-button>
+      </ion-col>
+      <ion-col no-padding>
+        <ion-button expand="full" color="success" type="submit">
+          <ion-icon name="save" slot="start"></ion-icon>
+          Enregistrer
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>

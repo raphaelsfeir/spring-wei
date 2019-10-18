@@ -1,0 +1,190 @@
+<div class="container" *ngIf="(bungalow|async)?.responsable !== 'false' && user.bungalow != '0'; else error">
+  <mat-card>
+    <mat-card-title>Bungalow n°{{(bungalow|async)?.numero}}</mat-card-title>
+    <br/>
+    <mat-card-content>
+      <ul>
+        <li class="locataires"><strong>Locataires : </strong>
+          <span *ngFor="let l of (bungalow|async)?.locataires">{{l}}</span></li>
+        <li><strong>Nombre de places : </strong>{{(bungalow|async)?.places}}</li>
+        <li><strong>Responsable : </strong>{{(bungalow|async)?.responsable}}</li>
+        <li><strong>Emplacement : </strong>Disponible sur l'application</li>
+      </ul>
+      <br/>
+      <div class="text-center">
+        <a routerLink="/help">Une modification à apporter ?</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #error>
+  <div class="container" *ngIf="(bungalow|async)?.responsable == 'false' && user.bungalow != '0'">
+    <mat-horizontal-stepper labelPosition="bottom" linear="true" #stepper>
+      <mat-step label="Introduction">
+        <div class="text-center">
+          <h5>Hey !</h5>
+          <p>Votre bungalow n'a pas de responsable !</p>
+          <br/>
+          <div class="wrap-auth-form-btn">
+            <div class="auth-form-bgbtn"></div>
+            <button class="auth-form-btn" matStepperNext>Commencer la configuration</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step label="Locataires">
+        <div class="text-center">
+          <h5>Locataires du bungalow</h5>
+          <p>D'après notre base de données, tes colocs sont les suivants :</p><br/>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let l of (bungalow|async)?.locataires">{{l}}</li>
+          </ul>
+          <br/>
+          <div class="wrap-auth-form-btn">
+            <div class="auth-form-bgbtn"></div>
+            <button class="auth-form-btn" matStepperNext>La liste est bonne</button>
+          </div><br/>
+          <a routerLink="/help">La liste est incorrecte ?</a>
+        </div>
+      </mat-step>
+      <mat-step label="Responsable" [completed]="selectResp != 'false'">
+        <div class="text-center">
+          <h5>Responsable du bungalow</h5>
+          <p>Personne n'a été défini comme responsable. C'est un poste obligatoire.</p>
+          <p>Choisissez donc la personne responsable du bungalow: ce choix est <strong>définitif</strong></p><br/>
+          <form #f="ngForm" (ngSubmit)="setResp(f)" class="resp">
+            <mat-radio-group name="resp" ngModel>
+              <mat-radio-button *ngFor="let l of (bungalow|async)?.locataires" [value]="l">{{l}}</mat-radio-button><br/>
+            </mat-radio-group>
+            <br/>
+            <div class="wrap-auth-form-btn" *ngIf="selectResp == 'false'">
+              <div class="auth-form-bgbtn"></div>
+              <button class="auth-form-btn" type="submit" (click)="stepper.next()">Enregistrer</button>
+            </div>
+            <div class="wrap-auth-form-btn" *ngIf="selectResp != 'false'">
+              <div class="auth-form-bgbtn"></div>
+              <button class="auth-form-btn" (click)="stepper.next()">Continuer</button>
+            </div>
+          </form>
+        </div>
+      </mat-step>
+      <mat-step label="Terminé !" completed="false">
+        <div class="text-center">
+          <h5>YOUPI ! 🎉🎉🎉</h5>
+          <p>C'est terminé ! Tu peux désormais accéder aux informations de ton bungalow !</p>
+          <br/>
+          <div class="wrap-auth-form-btn">
+            <div class="auth-form-bgbtn"></div>
+            <button class="auth-form-btn" (click)="refresh()">Voir mon bungalow</button>
+          </div>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+
+
+  <div class="container" *ngIf="user.bungalow == '0'">
+    <<!--mat-horizontal-stepper labelPosition="bottom" #stepper linear="true" style="min-height: 540px;">
+      <mat-step label="Introduction">
+        <div class="text-center">
+          <h5>Hey !</h5>
+          <p>Il semble que tu n'es inscrit dans aucun bungalow ! Prenons donc 2min pour te réserver le meilleur bungalow :)</p>
+          <br/>
+          <div class="wrap-auth-form-btn">
+            <div class="auth-form-bgbtn"></div>
+            <button class="auth-form-btn" matStepperNext>Choisir mon bungalow</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step label="Bungalow" [completed]="bungalowSelect > '0'">
+        <div class="text-center">
+          <h5>Bungalow</h5>
+          <p>Le camping propose plusieurs bungalows, à toi de choisir celui qui convient le mieux à ta coloc !</p><br/>
+          <div class="filter btn-group flex-wrap" role="group" aria-label="Button group with nested dropdown">
+            <button class="btn btn-outline-secondary" (click)="filter()">Tout afficher</button>
+            <button class="btn btn-outline-secondary" (click)="filter('libres')">Bungalows libres</button>
+            <div class="btn-group">
+              <button id="placesBungalow" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Par nombre de places
+              </button>
+              <div class="dropdown-menu" aria-labelledby="placesBungalow">
+                <a class="dropdown-item" (click)="filter('places-4')">4 places</a>
+                <a class="dropdown-item" (click)="filter('places-6')">6 places</a>
+                <a class="dropdown-item" (click)="filter('places-8')">8 places</a>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button id="groupesBungalow" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Par groupes
+              </button>
+              <div class="dropdown-menu" aria-labelledby="groupesBungalow">
+                <a class="dropdown-item" (click)="filter('groupe', [100,201])">Bungalow 100 - 200</a>
+                <a class="dropdown-item" (click)="filter('groupe', [201,301])">Bungalows 201 - 300</a>
+                <a class="dropdown-item" (click)="filter('groupe', [301,401])">Bungalows 301 - 400</a>
+                <a class="dropdown-item" (click)="filter('groupe', [401,501])">Bungalows 401 - 500</a>
+                <a class="dropdown-item" (click)="filter('groupe', [501,601])">Bungalows 501 - 600</a>
+              </div>
+            </div>
+          </div>
+          <div class="bungalowList row">
+            <div id="bungalow_{{b.numero}}"
+                 class="col-sm-4 bungalow list-group-item-action places-{{b.places}}"
+                 *ngFor="let b of (bungalows|async)"
+                 [ngClass]="getStatus(b.locataires, b.places)"
+                 (click)="select(b.numero)">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">Bungalow {{b.numero}}</h6>
+                <small>{{(b.locataires.length > 0) ? (b.locataires.length + ' / ') : ''}} {{b.places}} places</small>
+              </div>
+              <br/>
+              <div class="wrap-auth-form-btn" *ngIf="bungalowSelect === b.numero">
+                <div class="auth-form-bgbtn"></div>
+                <button class="auth-form-btn" (click)="stepper.next()">Rejoindre ce bungalow</button>
+              </div>
+            </div>
+          </div>
+
+          <a routerLink="/help">Une question ?</a>
+        </div>
+      </mat-step>
+      <mat-step label="Confirmation">
+        <div class="text-center">
+          <h5>Confirmation</h5>
+          <div *ngIf="bungalowSelect != '0'">
+            <p>Tu as sélectionné le <strong>bungalow n°{{bungalowSelect}}</strong></p><br/>
+            <h6>Informations sur le bungalow</h6><br/>
+            <ul>
+              <li><strong>Nombre de places : </strong>{{(bungalowChoisi|async).places}}</li>
+              <li *ngIf="(bungalowChoisi|async).locataires.length > 0" class="locataires"><strong>Locataires : </strong>
+                <span *ngFor="let l of (bungalowChoisi|async).locataires">{{l}}</span>
+              </li>
+              <li *ngIf="(bungalowChoisi|async).locataires.length === 0"><strong>Locataires : </strong>Aucun locataire</li>
+              <li *ngIf="(bungalowChoisi|async).responsable !== 'false'"><strong>Responsable : </strong>{{(bungalowChoisi|async).responsable}}</li>
+              <li *ngIf="(bungalowChoisi|async).responsable == 'false'"><strong>Responsable : </strong>Aucun responsable</li>
+            </ul>
+            <br/>
+            <div class="wrap-auth-form-btn" *ngIf="bungalowSelect != '0'">
+              <div class="auth-form-bgbtn"></div>
+              <button class="auth-form-btn" (click)="chooseBungalow()">Confirmer mon choix</button>
+            </div>
+          </div>
+          <div *ngIf="bungalowSelect === '0'">
+            <p>Aucun bungalow n'a été sélectionné !</p>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step label="Terminé !">
+        <div class="text-center">
+          <h5>YOUPI !🎉🎉🎉</h5>
+          <p>Voilà c'est terminé ! Tu peux désormais accéder aux informations de ton bungalow !</p>
+          <br/>
+          <div class="wrap-auth-form-btn">
+            <div class="auth-form-bgbtn"></div>
+            <button class="auth-form-btn" (click)="refresh()">Continuer</button>
+          </div>
+        </div>
+      </mat-step>
+      </mat-horizontal-stepper>-->
+    <div class="alert alert-danger">L'inscription dans les bungalows est terminée ! Tu seras inscrit durant le WEI :) !</div>
+  </div>
+</ng-template>

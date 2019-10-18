@@ -1,0 +1,8 @@
+<div class="container">
+  <div *ngIf="_auth.user.type !== 'étudiant'; else error">
+    <p>Redirection en cours...</p>
+  </div>
+  <ng-template #error>
+    <p>Eh ben alors ?! On s'est perdu ?</p>
+  </ng-template>
+</div>

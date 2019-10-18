@@ -1,0 +1,40 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>{{user.name}}</mat-card-title>
+    <br/>
+    <mat-card-content>
+      <ul>
+        <li><strong>Nom d'utilisateur : </strong>{{user.pseudo}}</li>
+        <li><strong>Adresse mail : </strong>{{user.pseudo}}@insa-cvl.fr</li>
+        <li><strong>Campus : </strong>{{user.campus}}</li>
+      </ul>
+    </mat-card-content>
+    <br/>
+    <h5>Changer le mot de passe</h5>
+    <br/>
+    <form class="auth-form" (ngSubmit)="changePass(f)" #f="ngForm">
+      <div class="wrap-inputAuth">
+        <input class="inputAuth" type="password" name="pass" [(ngModel)]="pass">
+        <span class="focus-inputAuth" data-placeholder="Nouveau mot de passe"></span>
+      </div>
+      <div class="wrap-inputAuth">
+        <input class="inputAuth" type="password" name="passc" [(ngModel)]="passc">
+        <span class="focus-inputAuth" data-placeholder="Confirmer le mot de passe"></span>
+      </div>
+      <div class="alert alert-danger" *ngIf="pass !== passc && pass != '' && passc != ''">
+        Les deux mots de passe sont différents.
+      </div>
+
+      <div class="wrap-auth-form-btn">
+        <div class="auth-form-bgbtn"></div>
+        <button class="auth-form-btn" type="submit" [disabled]="pass !== passc || pass === '' || passc === ''">
+          Changer le mot de passe
+        </button>
+      </div>
+
+      <div class="alert alert-danger" *ngIf="resultat !== ''">
+        {{resultat}}
+      </div>
+    </form>
+  </mat-card>
+</div>

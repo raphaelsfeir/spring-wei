@@ -1,0 +1,49 @@
+<ion-content>
+  <ion-slides #slides [options]="slideOpts">
+    <ion-slide class="step-one">
+      <h1>Hey !</h1>
+      <p>On a besoin de configurer quelques trucs pour que tu puisses accéder cette fonctionnalité</p>
+      <ion-button (click)="next()">C'est parti !</ion-button>
+    </ion-slide>
+
+    <ion-slide class="step-two">
+      <h1>Votre groupe</h1>
+      <p>Tu as rejoins le bungalow {{bungalow.numero}}, la liste des locataires est-elle correcte ?</p>
+      <ion-list>
+        <ion-item *ngFor="let b of bungalow?.locataires">
+          <ion-label>{{b}}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="full" (click)="next()">C'est parfait !</ion-button>
+      <ion-button expand="full" (click)="erreur()" color="danger">Non c'est faux !</ion-button>
+    </ion-slide>
+
+    <ion-slide class="step-three">
+      <h1>Responsable</h1>
+      <div *ngIf="!respo; else respoDefined">
+        <p>Choisissez la personne responsable de votre bungalow</p>
+        <form (ngSubmit)="defResp(r)" #r="ngForm">
+          <ion-list style="width:95%; margin: 0 auto">
+            <ion-radio-group name="respo" ngModel required>
+              <ion-item *ngFor="let b of bungalow?.locataires">
+                <ion-label>{{b}}</ion-label>
+                <ion-radio slot="start" [value]="b"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+          <br/>
+          <ion-button expand="full" type="submit" color="success" [disabled]="!r.valid">Valider</ion-button>
+        </form>
+      </div>
+      <ng-template #respoDefined>
+        <p>{{respo}} est responsable de votre bungalow</p>
+      </ng-template>
+    </ion-slide>
+
+    <ion-slide class="step-four">
+      <h1>Tadaam !</h1>
+      <p>Voilà c'est bon, tout a été configuré correctement ! Tu peux maintenant profiter à fond de l'appli !</p>
+      <ion-button routerLink="/user/bungalow">Continuer vers l'appli</ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,9 @@
+<app-header-back [BackUrl]="'/user/bungalow'" titre="Emplacement"></app-header-back>
+<ion-content no-padding>
+    <div *ngIf="loading">
+        <div class="spin-wrapper">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <div id="camping" [hidden]="loading"></div>
+</ion-content>

@@ -1,0 +1,42 @@
+<app-header-back [titre]="'Editer : ' + activite.titre" [BackUrl]="'/wei/activites'"></app-header-back>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="submit(f)">
+    <ion-list>
+      <ion-input type="text" placeholder="Titre" name="titre" [ngModel]="activite.titre" required></ion-input>
+      <ion-textarea placeholder="Description" name="description" [ngModel]="activite.description" required></ion-textarea>
+      <ion-item>
+        <ion-label>Jour</ion-label>
+        <ion-select name="jour" placeholder="Sélectionner le jour" [ngModel]="activite.jour" required>
+          <ion-select-option value="vendredi">Vendredi</ion-select-option>
+          <ion-select-option value="samedi">Samedi</ion-select-option>
+          <ion-select-option value="dimanche">Dimanche</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Heure de début</ion-label>
+        <ion-datetime doneText="Enregistrer" cancelText="Annuler" displayFormat="HH:mm" [ngModel]="activite.heure_debut" name="heure_debut" placeholder="00:00"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Heure de fin</ion-label>
+        <ion-datetime doneText="Enregistrer" cancelText="Annuler" displayFormat="HH:mm" [ngModel]="activite.heure_fin" name="heure_fin" placeholder="00:00"></ion-datetime>
+      </ion-item>
+    </ion-list>
+    <ion-grid *ngIf="activite.id">
+      <ion-row no-padding text-center *ngIf="activite.id" style="margin-top: 30px">
+        <ion-col no-padding>
+          <ion-button expand="full" color="danger" (click)="deleteActivite(activite.jour, activite.id)">
+            <ion-icon name="trash" slot="start"></ion-icon>
+            Supprimer
+          </ion-button>
+        </ion-col>
+        <ion-col no-padding>
+          <ion-button expand="full" color="success" type="submit">
+            <ion-icon name="save" slot="start"></ion-icon>
+            Enregistrer
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
